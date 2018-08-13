@@ -38,3 +38,32 @@ Docker is already installed and the working directory is the root of this Git re
 source ./clusterdock.sh
 clusterdock_run ./bin/start_cluster cdh --help
 ```
+
+## Hacking
+
+```
+export CLUSTERDOCK_IMAGE=genghuiluo/my-clusterdock
+
+sudo docker run --net=host -t \
+    --privileged \
+    ${TARGET_DIR_MOUNT} \
+    ${TOPOLOGY_VOLUME} \
+    ${REGISTRY_INSECURE} \
+    ${REGISTRY_USERNAME} \
+    ${REGISTRY_PASSWORD} \
+    -v /tmp/clusterdock \
+    -v /etc/hosts:/etc/hosts \
+    -v /etc/localtime:/etc/localtime \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    "${CLUSTERDOCK_IMAGE}" $@
+
+# bin/start_cluster
+actions = importlib.import_module("clusterdock.topologies.{0}.actions".format(args.topology))
+
+# clusterdock/topologies/cdh/actions.py
+
+# clusterdock/docker_utils.py
+# base on docker py client
+# using docker-py==1.8.1 Low-level API https://docker-py.readthedocs.io/en/stable/api.html
+ 
+```

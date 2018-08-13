@@ -226,6 +226,10 @@ class Node(object):
         host_configs['cap_add'] = ['ALL']
         host_configs['security_opt'] = ['seccomp:unconfined']
         host_configs['publish_all_ports'] = True
+        host_configs['publish_all_ports'] = True
+
+        if self.ports:
+            host_configs['port_bindings'] = {port:port for port in self.ports}
 
         if self.volumes:
             host_configs['binds'] = self._get_binds()

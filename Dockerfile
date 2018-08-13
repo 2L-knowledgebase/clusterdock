@@ -1,7 +1,8 @@
 # Copyright (C) 2012 - 2018 Cloudera, Inc.
 # All Rights Reserved.
 
-FROM debian:wheezy
+#FROM debian:wheezy
+FROM genghuiluo/my-ubuntu:16.04
 
 # Use a label indicating that a container is running the clusterdock framework to allow the
 # framework to handle things like stopping containers on the host machine without accidentally

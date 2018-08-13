@@ -57,9 +57,11 @@ def start(args):
 
     CM_SERVER_PORT = 7180
     HUE_SERVER_PORT = 8888
+    HBASE_REST_SERVER_PORT = 20550
+    SOLR_SERVER_PORT = 8983
 
     primary_node = Node(hostname=args.primary_node[0], network=args.network,
-                        image=primary_node_image, ports=[CM_SERVER_PORT, HUE_SERVER_PORT])
+                        image=primary_node_image, ports=[CM_SERVER_PORT, HUE_SERVER_PORT, HBASE_REST_SERVER_PORT, SOLR_SERVER_PORT])
 
     secondary_nodes = [Node(hostname=hostname, network=args.network, image=secondary_node_image)
                        for hostname in args.secondary_nodes]
